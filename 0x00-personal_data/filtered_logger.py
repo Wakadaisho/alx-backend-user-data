@@ -34,6 +34,7 @@ class RedactingFormatter(logging.Formatter):
     SEPARATOR = ";"
 
     def __init__(self, fields):
+        """Initialize RedactingFormatter"""
         super(RedactingFormatter, self).__init__(self.FORMAT)
         self.fields = fields
 
@@ -78,7 +79,8 @@ def main() -> None:
         message = ''.join([f"{FIELDS[i]}={row[i]};"
                            for i in range(len(row))])
         logger.info(message)
-
+    cur.close()
+    db.close()
 
 if __name__ == "__main__":
     main()
