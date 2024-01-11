@@ -22,7 +22,7 @@ def filter_datum(fields: List[str],
     for field in fields:
         message = re.sub(f"(?<={field})=.+?{separator}",
                          f"={redaction}{separator}", message)
-    return message
+    return f'{separator} '.join(re.split(separator, message)).strip()
 
 
 class RedactingFormatter(logging.Formatter):
@@ -81,6 +81,7 @@ def main() -> None:
         logger.info(message)
     cur.close()
     db.close()
+
 
 if __name__ == "__main__":
     main()
