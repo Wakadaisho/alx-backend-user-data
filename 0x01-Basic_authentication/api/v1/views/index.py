@@ -32,7 +32,6 @@ def unauthorized() -> str:
     Return:
       - user unauthorized
     """
-    abort(401)
 
 
 @app_views.route("/forbidden/", strict_slashes=False)
@@ -41,4 +40,3 @@ def forbidden() -> str:
     Return:
       - user forbidden
     """
-    abort(403)
