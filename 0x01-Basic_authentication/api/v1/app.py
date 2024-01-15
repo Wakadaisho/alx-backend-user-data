@@ -45,6 +45,8 @@ def not_found(error) -> str:
 
 @app.before_request
 def before_request():
+    """Before request handler
+    """
     if auth is None:
         return
 
