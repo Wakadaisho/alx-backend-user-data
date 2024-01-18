@@ -51,7 +51,7 @@ class SessionExpAuth(SessionAuth):
         if self.session_duration <= 0:
             return user_id
 
-        if not hasattr(session_dict, 'created_at'):
+        if 'created_at' not in session_dict:
             return None
 
         session_duration = (datetime.now() - created_at).total_seconds()
