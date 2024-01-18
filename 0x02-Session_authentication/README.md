@@ -7,7 +7,6 @@
 - How to parse Cookies
 
 
-
 # Simple API
 
 Simple HTTP API for playing with `User` model.
