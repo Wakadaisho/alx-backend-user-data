@@ -1,13 +1,10 @@
 #!/usr/bin/env python3
 """
-Session Authentication module
-dependant on Auth module
+SessionExp Authentication module
+dependant on SessionAuth module
 """
 
 from .session_auth import SessionAuth
-import uuid
-from typing import TypeVar
-from models.user import User
 from datetime import datetime
 import os
 
@@ -32,7 +29,7 @@ class SessionExpAuth(SessionAuth):
         if id is None:
             return None
         self.user_id_by_session_id.update({id: {'user_id': user_id,
-                                                'created_at': datetime.now()
+                                                'created_at': datetime.utcnow()
                                                 }})
         return id
 
@@ -54,7 +51,7 @@ class SessionExpAuth(SessionAuth):
         if 'created_at' not in session_dict:
             return None
 
-        session_duration = (datetime.now() - created_at).total_seconds()
+        session_duration = (datetime.utcnow() - created_at).total_seconds()
         if session_duration > self.session_duration:
             return None
 

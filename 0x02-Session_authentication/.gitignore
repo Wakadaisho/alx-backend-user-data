@@ -2,5 +2,5 @@ __pycache__/
 main_*.py
 user_data.csv
 SimpleAPI/
-.db_User.json
+.db_*.json
 **/*/.DS_Store
