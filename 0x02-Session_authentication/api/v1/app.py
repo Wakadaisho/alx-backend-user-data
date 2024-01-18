@@ -30,14 +30,14 @@ def not_found(error) -> str:
 
 
 @app.errorhandler(401)
-def not_found(error) -> str:
+def unauthorized(error) -> str:
     """ Unauthorized handler
     """
     return jsonify({"error": "Unauthorized"}), 401
 
 
 @app.errorhandler(403)
-def not_found(error) -> str:
+def forbidden(error) -> str:
     """ Forbidden handler
     """
     return jsonify({"error": "Forbidden"}), 403
@@ -58,6 +58,8 @@ def before_request():
         abort(401)
     if auth.current_user(request) is None:
         abort(403)
+
+    request.current_user = auth.current_user(request)
 
 
 if __name__ == "__main__":
