@@ -10,3 +10,10 @@ class Auth:
 
     def __init__(self):
         self._db = DB()
+
+
+def _hash_password(password: str) -> str:
+        """Hash password method
+        """
+        import bcrypt
+        return bcrypt.hashpw(password.encode(), bcrypt.gensalt())
