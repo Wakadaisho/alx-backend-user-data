@@ -11,12 +11,20 @@ def _hash_password(password: str) -> str:
     import bcrypt
     return bcrypt.hashpw(password.encode(), bcrypt.gensalt())
 
+def _generate_uuid() -> str:
+    """Generate UUIDs
+    """
+    import uuid
+    return str(uuid.uuid4())
+
 
 class Auth:
     """Auth class to interact with the authentication database.
     """
 
     def __init__(self):
+        """Initialization method
+        """
         self._db = DB()
 
     def register_user(self, email: str, password: str) -> None:
@@ -39,4 +47,3 @@ class Auth:
             return bcrypt.checkpw(password.encode(), user.hashed_password)
         except NoResultFound:
             return False
-        
