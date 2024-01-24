@@ -1,5 +1,5 @@
 __pycache__/
-main*.py
+main_*.py
 user_data.csv
 SimpleAPI/
 .db_*.json
