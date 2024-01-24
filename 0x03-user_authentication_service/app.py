@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 """Route module for the API
 """
-from flask import Flask, jsonify
+from flask import Flask, jsonify, request
 from flask_cors import (CORS, cross_origin)
 from auth import Auth
 
@@ -18,7 +18,16 @@ def index():
 
 @app.route("/users", methods=["POST"], strict_slashes=False)
 def users():
-    return jsonify({"message": "Bienvenue"})
+    email = request.form.get('email')
+    password = request.form.get('password')
+
+    try:
+        new_user = AUTH.register_user(email, password)
+        return jsonify({"email": new_user.email, "message": "user created"})
+    except ValueError:
+        return jsonify({"message": "email already registered"}), 400
+    except Exception:
+        return jsonify({"message": "error"})
 
 
 if __name__ == "__main__":
