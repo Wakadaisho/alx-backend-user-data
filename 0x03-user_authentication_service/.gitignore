@@ -4,3 +4,4 @@ user_data.csv
 SimpleAPI/
 .db_*.json
 **/*/.DS_Store
+a.db
